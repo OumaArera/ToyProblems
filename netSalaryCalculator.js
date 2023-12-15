@@ -1,77 +1,83 @@
 // Calculates Net salary
-const netSalaryCalculator = (annualBasicSalary, annualBenefits, annualDisabilityExempltion, ) => {
+const netSalaryCalculator = (annualBasicSalary, annualBenefits, annualDisabilityExempltion) => {
+
+    // Contribution benefit
+    const contributionBenefit = 1080*12;
 
     // Calculates annual gross salary
-    const annualGrossSalary = parseFloat(annualBasicSalary) + parseFloat(annualBenefits);
+    const annualGrossTaxableIncome = parseFloat(annualBasicSalary) + parseFloat(annualBenefits)-contributionBenefit;
 
     // Calculating PAYE annually
     let annualPaye;
 
-    if(annualGrossSalary <= 288000){
-        annualPaye = annualGrossSalary * 0.1;
+    if(annualGrossTaxableIncome <= 288000){
+        annualPaye = annualGrossTaxableIncome * 0.1;
 
-    } else if (annualGrossSalary > 288000 && annualGrossSalary <= 388000){
-        annualPaye = (288000 * 0.1) + ((annualGrossSalary - 288000) * 0.25);
+    } else if (annualGrossTaxableIncome > 288000 && annualGrossTaxableIncome <= 388000){
+        annualPaye = (288000 * 0.1) + ((annualGrossTaxableIncome - 288000) * 0.25);
 
-    } else if(annualGrossSalary > 388000 && annualGrossSalary <= 6000000){
-        annualPaye = (288000 * 0.1) + (100000 * 0.25) + ((annualGrossSalary - 388000) * 0.3);
+    } else if(annualGrossTaxableIncome > 388000 && annualGrossTaxableIncome <= 6000000){
+        annualPaye = (288000 * 0.1) + (100000 * 0.25) + ((annualGrossTaxableIncome - 388000) * 0.3);
 
-    } else if(annualGrossSalary > 6000000 && annualGrossSalary <= 9600000){
-        annualPaye = (288000 * 0.1) + (100000 * 0.25) + (2120000 * 0.3) + ((annualGrossSalary - 6000000) * 0.325);
+    } else if(annualGrossTaxableIncome > 6000000 && annualGrossTaxableIncome <= 9600000){
+        annualPaye = (288000 * 0.1) + (100000 * 0.25) + (2120000 * 0.3) + ((annualGrossTaxableIncome - 6000000) * 0.325);
 
     } else {
-        annualPaye = (288000 * 0.1) + (100000 * 0.25) + (2120000 * 0.3) + (3600000 * 0.325) + ((annualGrossSalary - 9600000) * 0.35);
+        annualPaye = (288000 * 0.1) + (100000 * 0.25) + (2120000 * 0.3) + (3600000 * 0.325) + ((annualGrossTaxableIncome - 9600000) * 0.35);
 
     }
 
     // Calculating NHIF annual deductions
     let annualNHIF;
 
-    if(annualGrossSalary <= 71988){
+    if(annualGrossTaxableIncome <= 71988){
         annualNHIF = 150*12;
-    } else if (annualGrossSalary > 71988 && annualGrossSalary <= 95988){
+    } else if (annualGrossTaxableIncome > 71988 && annualGrossTaxableIncome <= 95988){
         annualNHIF = 300*12;
-    } else if(annualGrossSalary > 95988 && annualGrossSalary <= 143988){
+    } else if(annualGrossTaxableIncome > 95988 && annualGrossTaxableIncome <= 143988){
         annualNHIF = 400*12;
-    } else if(annualGrossSalary > 143988 && annualGrossSalary <= 179988){
+    } else if(annualGrossTaxableIncome > 143988 && annualGrossTaxableIncome <= 179988){
         annualNHIF = 500*12;
-    } else if(annualGrossSalary > 179988 && annualGrossSalary <= 239988){
+    } else if(annualGrossTaxableIncome > 179988 && annualGrossTaxableIncome <= 239988){
         annualNHIF = 600*12;
-    } else if(annualGrossSalary > 239988 && annualGrossSalary <= 299988){
+    } else if(annualGrossTaxableIncome > 239988 && annualGrossTaxableIncome <= 299988){
         annualNHIF = 750*12;
-    } else if(annualGrossSalary > 299988 && annualGrossSalary <= 419988){
+    } else if(annualGrossTaxableIncome > 299988 && annualGrossTaxableIncome <= 419988){
         annualNHIF = 850*12;
-    } else if(annualGrossSalary > 419988 && annualGrossSalary <= 479988){
+    } else if(annualGrossTaxableIncome > 419988 && annualGrossTaxableIncome <= 479988){
         annualNHIF = 950*12;
-    } else if(annualGrossSalary > 479988 && annualGrossSalary <= 539988){
+    } else if(annualGrossTaxableIncome > 479988 && annualGrossTaxableIncome <= 539988){
         annualNHIF = 1000;
-    } else if(annualGrossSalary > 539988 && annualGrossSalary <= 599988){
+    } else if(annualGrossTaxableIncome > 539988 && annualGrossTaxableIncome <= 599988){
         annualNHIF = 1100*12;
-    } else if(annualGrossSalary > 599988 && annualGrossSalary <= 719988){
+    } else if(annualGrossTaxableIncome > 599988 && annualGrossTaxableIncome <= 719988){
         annualNHIF = 1200*12;
-    } else if(annualGrossSalary > 719988 && annualGrossSalary <= 839988){
+    } else if(annualGrossTaxableIncome > 719988 && annualGrossTaxableIncome <= 839988){
         annualNHIF = 1300;
-    } else if(annualGrossSalary > 839988 && annualGrossSalary <= 959988){
+    } else if(annualGrossTaxableIncome > 839988 && annualGrossTaxableIncome <= 959988){
         annualNHIF = 1400*12;
-    } else if(annualGrossSalary > 959988 && annualGrossSalary <= 1079988){
+    } else if(annualGrossTaxableIncome > 959988 && annualGrossTaxableIncome <= 1079988){
         annualNHIF = 1500*12;
-    } else if(annualGrossSalary > 1079988 && annualGrossSalary <= 1199988){
+    } else if(annualGrossTaxableIncome > 1079988 && annualGrossTaxableIncome <= 1199988){
         annualNHIF = 1600*12;
     } else {
         annualNHIF = 1700*12;
     }
 
     //Calculating NSSF Annual Deductions
-    let annualNSSF = annualGrossSalary * .06;
+    let annualNSSF = annualGrossTaxableIncome * .06;
+    if (annualNSSF > (6000*12)){
+        annualNSSF = 6000*12;
+    }
 
     // Calculating Annual housing levy
-    let annualHousingLevy = annualGrossSalary * 0.015
+    let annualHousingLevy = annualGrossTaxableIncome * 0.015
 
     // Personal tax relief 
     const annualPersonalRelief = 2400*12;
 
     //Calculating Annual net salary
-    let annualNetSalary = annualGrossSalary - annualPaye - annualNHIF - annualNSSF - annualHousingLevy + annualPersonalRelief + annualDisabilityExempltion;
+    let annualNetSalary = annualGrossTaxableIncome - annualPaye - annualNHIF - annualNSSF - annualHousingLevy + annualPersonalRelief + annualDisabilityExempltion;
     let monthlyNetSalary = annualNetSalary/12;
     console.log(`Net Annual Salary = ${annualNetSalary}`);
     console.log(`Net Monthly Salary = ${monthlyNetSalary}`);
