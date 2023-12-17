@@ -74,6 +74,4 @@ Links to an external site.-  Links to an external site.Links to an external site
 
 
 
-# This work has been authored by John Ouma alias Ouma Arera.
-# Kindly seek the autho's permision to use it for any other purpose other than studies. 
-# Author takes no responsibilty for any damage experienced when used for studies.
+
